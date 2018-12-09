@@ -46,7 +46,9 @@ const fromNumberToPositions = nPositions => {
 const fromPositionsToNumber = nPositions => {
   let diff = factorial(nPositions);
   const nDeltas = nPositions - 1;
+  const nMods = nDeltas - 1;
   const deltas = new Array(nDeltas);
+  const mods = new Array(nMods);
 
   for (let i = 2, d = nDeltas; i < nPositions + 1; i++) {
     diff /= i;
@@ -54,16 +56,13 @@ const fromPositionsToNumber = nPositions => {
   }
 
   return position => {
-    const positionLastIdx = position.length - 1;
     let initialNode = {
-      start: position[positionLastIdx],
-      nextStart: position[positionLastIdx] + 1,
+      start: position[nDeltas],
+      nextStart: position[nDeltas] + 1,
       count: 1,
     };
     initialNode.prev = {nextStart: -Infinity, next: initialNode};
     initialNode.next = {start: Infinity, prev: initialNode};
-
-    const mods = new Array(positionLastIdx);
 
     for (let i = position.length - 2; i > 0; i--) {
       let node = initialNode;
