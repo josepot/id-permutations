@@ -1,23 +1,66 @@
 {
-  "name": "AoC-2018",
+  "name": "id-permutations",
   "version": "1.0.0",
   "description": "ID <-> Permutations",
-  "main": "index.js",
   "repository": "https://github.com/josepot/id-permutations",
   "author": "Josep M Sobrepere",
   "license": "MIT",
+  "main": "lib/id-permutations.js",
+  "unpkg": "dist/id-permutations.js",
+  "module": "es/id-permutations.js",
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "src"
+  ],
+  "scripts": {
+    "clean": "rimraf lib dist es",
+    "format": "prettier --write \"src/**/*.js\"",
+    "format:check": "prettier --list-different \"src/**/*.js\"",
+    "lint": "eslint src",
+    "build": "rollup -c",
+    "prepare": "npm run clean && npm run format:check && npm run lint"
+  },
+  "dependencies": {
+    "loose-envify": "^1.4.0"
+  },
   "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-external-helpers": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^9.0.0",
     "cross-env": "^5.2.0",
     "eslint": "5.9.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "prettier": "^1.13.7"
+    "prettier": "^1.13.7",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.66.2",
+    "rollup-plugin-babel": "^4.0.1",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-replace": "^2.0.0",
+    "rollup-plugin-terser": "^3.0.0"
   },
-  "scripts": {
-    "clean": "rimraf dist",
-    "format": "prettier --write \"src/**/*.js\"",
-    "format:check": "prettier --list-different \"src/**/*.js\"",
-    "lint": "eslint src",
-    "test": "cross-env NODE_ENV=test jest"
-  }
+  "npmName": "id-permutations",
+  "npmFileMap": [
+    {
+      "basePath": "/dist/",
+      "files": [
+        "*.js"
+      ]
+    }
+  ],
+  "browserify": {
+    "transform": [
+      "loose-envify"
+    ]
+  },
+  "sideEffects": false
 }
