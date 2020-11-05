@@ -1,6 +1,6 @@
 {
   "name": "id-permutations",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "ID <-> Permutations",
   "repository": "https://github.com/josepot/id-permutations",
   "author": "Josep M Sobrepere",
@@ -22,7 +22,7 @@
     "format:check": "prettier --list-different \"src/**/*.js\"",
     "lint": "eslint src",
     "build": "rollup -c",
-    "prepare": "npm run clean && npm run format:check && npm run lint"
+    "prepare": "npm run clean && npm run format:check && npm run lint && npm run build"
   },
   "dependencies": {
     "loose-envify": "^1.4.0"
