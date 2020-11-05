@@ -4,17 +4,17 @@ function factorial(n) {
   return f[n] > 0 ? f[n] : (f[n] = factorial(n - 1) * n);
 }
 
-const zeroRange = x => {
+const zeroRange = (x) => {
   const res = new Array(x);
   for (let i = 0; i < x; i++) res[i] = i;
   return res;
 };
 
-const fromNumberToPositions = nPositions => {
-  const positions = zeroRange(nPositions).map(id => ({id}));
+const fromNumberToPositions = (nPositions) => {
+  const positions = zeroRange(nPositions).map((id) => ({id}));
   for (let i = 0; i < nPositions - 1; i++) positions[i].next = positions[i + 1];
 
-  return x => {
+  return (x) => {
     const result = new Array(nPositions);
     let init = positions[0];
 
@@ -43,7 +43,7 @@ const fromNumberToPositions = nPositions => {
   };
 };
 
-const fromPositionsToNumber = nPositions => {
+const fromPositionsToNumber = (nPositions) => {
   let diff = factorial(nPositions);
   const nDeltas = nPositions - 1;
   const nMods = nDeltas - 1;
@@ -52,10 +52,10 @@ const fromPositionsToNumber = nPositions => {
 
   for (let i = 2, d = nDeltas; i < nPositions + 1; i++) {
     diff /= i;
-    deltas[--d] = zeroRange(i).map(x => x * diff);
+    deltas[--d] = zeroRange(i).map((x) => x * diff);
   }
 
-  return position => {
+  return (position) => {
     let initialNode = {
       start: position[nDeltas],
       nextStart: position[nDeltas] + 1,
@@ -112,7 +112,7 @@ const fromPositionsToNumber = nPositions => {
   };
 };
 
-module.exports = nPositions => ({
+module.exports = (nPositions) => ({
   getPermutationsFromId: fromNumberToPositions(nPositions),
   getIdFromPermutations: fromPositionsToNumber(nPositions),
 });
